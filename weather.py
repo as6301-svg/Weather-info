@@ -1,8 +1,14 @@
+from dotenv import load_dotenv
+import os
 import json
 import urllib.request as urlreq
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
 city = input("Enter city name: ")
 try:
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=f1508117d3bdb837fcff9076b79eeef5&units=metric"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
     response = urlreq.urlopen(url)
     data = response.read()
     info = json.loads(data)
